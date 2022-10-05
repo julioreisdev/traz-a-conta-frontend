@@ -1,7 +1,8 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./pages/login/Login";
-import Register from "./pages/register/Register";
+import Login from "./pages/auth/login/Login";
+import Register from "./pages/auth/register/Register";
+import Dashboard from "./pages/dashboard/Dashboard";
 import { Container } from "./style";
 
 const App: FC = () => {
@@ -10,8 +11,9 @@ const App: FC = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/signin" element={<Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
     </Container>
