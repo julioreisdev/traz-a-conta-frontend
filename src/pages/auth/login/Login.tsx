@@ -25,7 +25,7 @@ const Login: FC = () => {
       .then((res) => {
         localStorage.setItem("tac_token", res.data.token);
         localStorage.setItem("tac_master", res.data.is_master);
-        navigate("/dashboard");
+        navigate("/tables");
       })
       .catch((err) => {
         if ([404, 401].includes(err.response.status)) {
@@ -44,6 +44,7 @@ const Login: FC = () => {
         <h1>Login</h1>
         <form onSubmit={(e) => login(e)}>
           <input
+            id="user"
             placeholder="Nome de usuário"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
