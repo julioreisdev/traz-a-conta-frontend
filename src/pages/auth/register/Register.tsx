@@ -71,7 +71,7 @@ const Register: FC = () => {
             required
           />
           <AlertErroForm>{alertMessage}</AlertErroForm>
-          <button>
+          <button disabled={loading}>
             {loading ? (
               <ThreeDots color="#fff" width={20} height={20} />
             ) : (
