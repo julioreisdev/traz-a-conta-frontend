@@ -43,7 +43,7 @@ const List: FC = () => {
       })
       .catch((err) => {
         if (err.response.status === 409) {
-          setMessage("Produto já cadastrado!");
+          setMessage("Atendente já cadastrado!");
         } else {
           setMessage("Não foi possível cadastrar produto!");
         }
@@ -87,6 +87,7 @@ const List: FC = () => {
                   setPassword(e.target.value);
                 }}
               ></input>
+               {addAttendant && <Message color="red">{message}</Message>}
               <button disabled={loading}>
                 {loading ? (
                   <ThreeDots color="#555" width={20} height={20} />
@@ -96,7 +97,7 @@ const List: FC = () => {
               </button>
             </FormAddSimple>
           )}
-          {addAttendant && <Message color="red">{message}</Message>}
+         
         </>
         <ListContainer>
           {attendantsList?.map((product: IAttendants, index: number) => (

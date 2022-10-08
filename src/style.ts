@@ -79,13 +79,14 @@ export const Message = styled.p<IMessage>`
   color: ${(props) => props.color};
   font-weight: 400;
   font-size: 0.8rem;
+  margin-bottom: 0.5rem;
 `;
 
 export const ListContainer = styled.div`
   width: 100%;
   margin: 2rem 0 0 0;
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  align-items: flex-start;
+  justify-content: space-between;
   flex-wrap: wrap;
 `;

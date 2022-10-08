@@ -14,16 +14,29 @@ export const TablesContainer = styled.div`
   }
 `;
 
-export const Table = styled.div`
+export const TableContainerUnit = styled.div`
+  width: 200px;
+  margin: 0 0 1rem 0;
+  @media (min-width: 0) and (max-width: 520px) {
+    width: 100%;
+    margin: 0 0 1rem 0;
+  }
+`;
+
+interface ITableProps {
+  radius: string;
+}
+
+export const Table = styled.div<ITableProps>`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 150px;
-  height: 150px;
-  padding: 0.5rem;
+  flex-direction: column;
+  width: 200px;
+  padding: 1rem 0 0 0;
   background-color: #4682b4;
-  border-radius: 10px;
-  margin: 0 0.5rem 1rem 0.5rem;
+  border-radius: ${(props) => props.radius};
+
   transition: 0.1s all;
 
   :hover {
@@ -33,6 +46,7 @@ export const Table = styled.div`
 
   p {
     font-size: 1rem;
+    margin-bottom: 1rem;
     font-weight: bold;
     color: #fdfdfd;
     text-transform: uppercase;
@@ -40,7 +54,39 @@ export const Table = styled.div`
 
   @media (min-width: 0) and (max-width: 520px) {
     width: 100%;
-    height: 100px;
-    margin: 0 0 1rem 0;
+  }
+`;
+
+export const TableOption = styled.div`
+  width: 100%;
+  background-color: #fdfdfd;
+
+  select {
+    border: 1px solid #ccc;
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    color: #4682b4;
+    font-weight: 400;
+  }
+`;
+
+export const ButtonsOptionsTable = styled.div`
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  button {
+    border: 1px solid  #229954;
+    background-color: #229954;
+    border-radius: 2px;
+    color: #fdfdfd;
+    font-size: 1rem;
+    width: 49%;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 `;
