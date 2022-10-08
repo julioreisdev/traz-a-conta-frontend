@@ -1,14 +1,7 @@
 import { FC, useState } from "react";
-import {
-  Container,
-  FormAddTable,
-  ListContainer,
-  Message,
-  Table,
-  TablesContainer,
-} from "./style";
+import { Container, Table, TablesContainer } from "./style";
 import TableRestaurantIcon from "@mui/icons-material/TableRestaurant";
-import { AddContainer } from "../../style";
+import { AddContainer, FormAddSimple, ListContainer, Message } from "../../style";
 import { ThreeDots } from "react-loader-spinner";
 import { useTables } from "../../hooks/useTables";
 import { api, getHeaders } from "../../utils/api";
@@ -60,7 +53,12 @@ const List: FC = () => {
             </button>
           </AddContainer>
           {addTable && (
-            <FormAddTable onSubmit={(e) => createTable(e)}>
+            <FormAddSimple
+              inputWidth="78%"
+              buttonWidth="18%"
+              flexDirection="row"
+              onSubmit={(e) => createTable(e)}
+            >
               <input
                 placeholder="N°/ Descrição da mesa"
                 required
@@ -74,10 +72,10 @@ const List: FC = () => {
                 {loading ? (
                   <ThreeDots color="#555" width={20} height={20} />
                 ) : (
-                  "Entrar"
+                  "Salvar"
                 )}
               </button>
-            </FormAddTable>
+            </FormAddSimple>
           )}
           {addTable && <Message color="red">{message}</Message>}
         </>
