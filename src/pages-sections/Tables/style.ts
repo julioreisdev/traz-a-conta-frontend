@@ -78,6 +78,7 @@ export const ButtonsOptionsTable = styled.div`
   justify-content: space-between;
   width: 100%;
   button {
+    cursor: pointer;
     border: 1px solid  #229954;
     background-color: #229954;
     border-radius: 2px;
@@ -90,3 +91,7 @@ export const ButtonsOptionsTable = styled.div`
     justify-content: center;
   }
 `;
+
+export const LinkBalance = styled.div`
+  width: 49%;
+`

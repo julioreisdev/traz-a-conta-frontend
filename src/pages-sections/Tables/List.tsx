@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import {
   ButtonsOptionsTable,
   Container,
+  LinkBalance,
   Table,
   TableContainerUnit,
   TableOption,
@@ -22,8 +23,13 @@ import { ITable } from "../../interfaces/tables.interface";
 import { useProducts } from "../../hooks/useProducts";
 import BookmarkAddedIcon from "@mui/icons-material/BookmarkAdded";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
+import { Link } from "react-router-dom";
 
-const List: FC = () => {
+interface IPropsTablesList {
+  setBalanceId: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const List: FC<IPropsTablesList> = ({ setBalanceId }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [addTable, setAddTable] = useState<boolean>(false);
   const [table, setTable] = useState("");
@@ -116,7 +122,9 @@ const List: FC = () => {
             >
               <option value={0}></option>
               {productsList?.map((product, index: number) => (
-                <option key={index} value={product.id}>{product.name}</option>
+                <option key={index} value={product.id}>
+                  {product.name}
+                </option>
               ))}
             </select>
             <Message color={messageColor}>{messageAddRequest}</Message>
@@ -134,12 +142,18 @@ const List: FC = () => {
                   "Adicionar"
                 )}
               </button>
-              <button>
-                <BookmarkAddedIcon
-                  sx={{ fontSize: "1rem", marginRight: "0.5rem" }}
-                />
-                Conta
-              </button>
+              <LinkBalance
+                onClick={() => {
+                  setBalanceId(props.table.id);
+                }}
+              >
+                <Link className="linkBalance" to={"/balance"}>
+                  <BookmarkAddedIcon
+                    sx={{ fontSize: "1rem", marginRight: "0.5rem" }}
+                  />
+                  Conta
+                </Link>
+              </LinkBalance>
             </ButtonsOptionsTable>
           </TableOption>
         )}

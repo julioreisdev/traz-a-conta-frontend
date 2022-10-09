@@ -18,6 +18,6 @@ export async function fetcher(url: string) {
     })
     .then((res) => res.data)
     .catch((err) => {
-      return err;
+      return err.response.status;
     });
 }

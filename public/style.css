@@ -9,3 +9,14 @@
   text-decoration: none;
   color: #4682B4;
 }
+
+.linkBalance {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  background-color: #229954;
+  text-decoration: none;
+  color: #fdfdfd;
+  padding: 0.55rem 0;
+}
