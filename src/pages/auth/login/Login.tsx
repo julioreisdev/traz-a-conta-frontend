@@ -52,6 +52,7 @@ const Login: FC = () => {
             required
           />
           <input
+            id="password"
             placeholder="Senha"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -59,7 +60,7 @@ const Login: FC = () => {
             required
           />
           <AlertErroForm>{alertMessage}</AlertErroForm>
-          <button disabled={loading}>
+          <button disabled={loading} id='loginButton'>
             {loading ? (
               <ThreeDots color="#fff" width={20} height={20} />
             ) : (
