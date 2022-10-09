@@ -1,7 +1,8 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: `${process.env.REACT_APP_API}`,
+  /* baseURL: `${process.env.REACT_APP_API}`, */
+  baseURL: "http://44.203.77.246",
 });
 
 export function getHeaders() {
