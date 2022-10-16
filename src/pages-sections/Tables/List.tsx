@@ -25,6 +25,7 @@ import BookmarkAddedIcon from "@mui/icons-material/BookmarkAdded";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { Link } from "react-router-dom";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import Confirm from "../../components/Confirm";
 
 interface IPropsTablesList {
   setBalanceId: React.Dispatch<React.SetStateAction<number>>;
@@ -37,6 +38,7 @@ const List: FC<IPropsTablesList> = ({ setBalanceId }) => {
   const [message, setMessage] = useState("");
   const { tablesList } = useTables();
   const { productsList } = useProducts();
+
   const { mutate } = useSWRConfig();
 
   function createTable(e: any) {
@@ -71,6 +73,35 @@ const List: FC<IPropsTablesList> = ({ setBalanceId }) => {
     const [messageAddRequest, setMessageAddRequest] = useState("");
     const [messageColor, setMessageColor] = useState("");
     const [productIdSelected, setProductIdSelected] = useState<number>(0);
+
+    const [modalConfirmIsOpen, setModalConfirmIsOpen] =
+      useState<boolean>(false);
+    const [deleteTable, setDeleteTable] = useState<boolean>(false);
+    const [messageDeleteConfirm, setMessageDeleteConfirm] = useState("");
+
+    function confirmDeleteTable(e: any) {
+      e.stopPropagation();
+      setMessageDeleteConfirm(
+        `Tem certeza que deseja excluir (${props.table.description})?`
+      );
+      setModalConfirmIsOpen(true);
+    }
+
+    if (deleteTable) {
+      api
+        .delete(`/companies/tables/${props.table?.id}`, {
+          headers: getHeaders(),
+        })
+        .then((res) => {
+          mutate("/companies/tables/");
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => {
+          setDeleteTable(false);
+        });
+    }
 
     function createRequest(e: any) {
       e.preventDefault();
@@ -112,7 +143,11 @@ const List: FC<IPropsTablesList> = ({ setBalanceId }) => {
           }}
         >
           <p>{props.table.description}</p>
-          <div>
+          <div
+            onClick={(e) => {
+              confirmDeleteTable(e);
+            }}
+          >
             <DeleteOutlineIcon color={"action"} />
           </div>
         </Table>
@@ -161,6 +196,12 @@ const List: FC<IPropsTablesList> = ({ setBalanceId }) => {
             </ButtonsOptionsTable>
           </TableOption>
         )}
+        <Confirm
+          message={messageDeleteConfirm}
+          open={modalConfirmIsOpen}
+          close={() => setModalConfirmIsOpen(false)}
+          setConfirm={() => setDeleteTable(true)}
+        />
       </TableContainerUnit>
     );
   }

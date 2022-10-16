@@ -21,7 +21,6 @@ const Confirm: FC<IProps> = ({
         <div>
           <button
             onClick={() => {
-              setConfirm(false);
               close();
             }}
           >
@@ -46,9 +45,10 @@ interface IContainer {
 }
 
 const Container = styled.div<IContainer>`
-  position: absolute;
+  position: fixed;
   top: 0;
-  width: 100%;
+  left: 0;
+  width: 100vw;
   height: 100vh;
   display: ${(props) => props.display};
   align-items: center;
