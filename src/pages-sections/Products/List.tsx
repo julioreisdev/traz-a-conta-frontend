@@ -13,6 +13,7 @@ import useSWR, { useSWRConfig } from "swr";
 import { useProducts } from "../../hooks/useProducts";
 import { IProduct } from "../../interfaces/products.interface";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import Confirm from "../../components/Confirm";
 
 const List: FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -20,8 +21,41 @@ const List: FC = () => {
   const [productName, setProductName] = useState<string>("");
   const [productAmount, setProductAmount] = useState<string>("");
   const [message, setMessage] = useState("");
+  const [modalConfirmIsOpen, setModalConfirmIsOpen] = useState<boolean>(false);
+  const [deleteProduct, setDeleteProduct] = useState<boolean>(false);
+  const [messageDeleteConfirm, setMessageDeleteConfirm] = useState("");
+  const [productCurrently, setProductCurrently] = useState<
+    IProduct | undefined
+  >();
+
   const { productsList } = useProducts();
   const { mutate } = useSWRConfig();
+
+  function confirmDeleteProduct(e: any, attendant: IProduct) {
+    e.stopPropagation();
+    setMessageDeleteConfirm(
+      `Tem certeza que deseja (excluir ${attendant.name})?`
+    );
+    setModalConfirmIsOpen(true);
+  }
+
+  if (deleteProduct) {
+    api
+      .delete(`/companies/products/${productCurrently?.id}`, {
+        headers: getHeaders(),
+      })
+      .then((res) => {
+        mutate("/companies/products/");
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setDeleteProduct(false);
+        setProductCurrently(undefined);
+      });
+  }
+
   function createProduct(e: any) {
     e.preventDefault();
     setLoading(true);
@@ -100,14 +134,27 @@ const List: FC = () => {
         <ListContainer>
           {productsList?.map((product: IProduct, index: number) => (
             <Product key={index}>
-              <p>{product.name} - R$ {product.amount}</p>
-              <div>
-                <DeleteOutlineIcon color={'action'} />
+              <p>
+                {product.name} - R$ {product.amount}
+              </p>
+              <div
+                onClick={(e) => {
+                  confirmDeleteProduct(e, product);
+                  setProductCurrently(product);
+                }}
+              >
+                <DeleteOutlineIcon color={"action"} />
               </div>
             </Product>
           ))}
         </ListContainer>
       </ProductsContainer>
+      <Confirm
+        message={messageDeleteConfirm}
+        open={modalConfirmIsOpen}
+        close={() => setModalConfirmIsOpen(false)}
+        setConfirm={() => setDeleteProduct(true)}
+      />
     </Container>
   );
 };

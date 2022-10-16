@@ -59,10 +59,10 @@ const List: FC = () => {
       .finally(() => setLoading(false));
   }
 
-  function ConfirmDeleteAttendant(e: any, attendant: IAttendants) {
+  function confirmDeleteAttendant(e: any, attendant: IAttendants) {
     e.stopPropagation();
     setMessageDeleteConfirm(
-      `Tem certeza que deseja excluir ${attendant.name}?`
+      `Tem certeza que deseja excluir (${attendant.name})?`
     );
     setModalConfirmIsOpen(true);
   }
@@ -141,7 +141,7 @@ const List: FC = () => {
 
               <div
                 onClick={(e) => {
-                  ConfirmDeleteAttendant(e, attendant);
+                  confirmDeleteAttendant(e, attendant);
                   setAttendantCurrently(attendant);
                 }}
               >
