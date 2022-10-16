@@ -24,6 +24,7 @@ import { useProducts } from "../../hooks/useProducts";
 import BookmarkAddedIcon from "@mui/icons-material/BookmarkAdded";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { Link } from "react-router-dom";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 interface IPropsTablesList {
   setBalanceId: React.Dispatch<React.SetStateAction<number>>;
@@ -111,6 +112,9 @@ const List: FC<IPropsTablesList> = ({ setBalanceId }) => {
           }}
         >
           <p>{props.table.description}</p>
+          <div>
+            <DeleteOutlineIcon color={"action"} />
+          </div>
         </Table>
         {optionsIsOpen && (
           <TableOption>

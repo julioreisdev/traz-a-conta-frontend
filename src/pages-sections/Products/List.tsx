@@ -12,6 +12,7 @@ import { api, getHeaders } from "../../utils/api";
 import useSWR, { useSWRConfig } from "swr";
 import { useProducts } from "../../hooks/useProducts";
 import { IProduct } from "../../interfaces/products.interface";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 const List: FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -100,6 +101,9 @@ const List: FC = () => {
           {productsList?.map((product: IProduct, index: number) => (
             <Product key={index}>
               <p>{product.name} - R$ {product.amount}</p>
+              <div>
+                <DeleteOutlineIcon color={'action'} />
+              </div>
             </Product>
           ))}
         </ListContainer>

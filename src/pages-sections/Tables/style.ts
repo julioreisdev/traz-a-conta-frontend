@@ -15,7 +15,7 @@ export const TablesContainer = styled.div`
 `;
 
 export const TableContainerUnit = styled.div`
-  width: 200px;
+  width: 100%;
   margin: 0 0 1rem 0;
   @media (min-width: 0) and (max-width: 520px) {
     width: 100%;
@@ -30,10 +30,10 @@ interface ITableProps {
 export const Table = styled.div<ITableProps>`
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  width: 200px;
-  padding: 1rem 0 0 0;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 50px;
+  padding: 0.5rem;
   background-color: #4682b4;
   border-radius: ${(props) => props.radius};
 
@@ -46,14 +46,9 @@ export const Table = styled.div<ITableProps>`
 
   p {
     font-size: 1rem;
-    margin-bottom: 1rem;
     font-weight: bold;
     color: #fdfdfd;
     text-transform: uppercase;
-  }
-
-  @media (min-width: 0) and (max-width: 520px) {
-    width: 100%;
   }
 `;
 
@@ -79,7 +74,7 @@ export const ButtonsOptionsTable = styled.div`
   width: 100%;
   button {
     cursor: pointer;
-    border: 1px solid  #229954;
+    border: 1px solid #229954;
     background-color: #229954;
     border-radius: 2px;
     color: #fdfdfd;
@@ -94,4 +89,4 @@ export const ButtonsOptionsTable = styled.div`
 
 export const LinkBalance = styled.div`
   width: 49%;
-`
+`;

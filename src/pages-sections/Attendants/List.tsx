@@ -12,6 +12,8 @@ import {
 import GroupsIcon from "@mui/icons-material/Groups";
 import { useAttendants } from "../../hooks/useAttendants";
 import { IAttendants } from "../../interfaces/attendants.interface";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import Confirm from "../../components/Confirm";
 
 const List: FC = () => {
   const [username, setUsername] = useState<string>("");
@@ -20,6 +22,12 @@ const List: FC = () => {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState<boolean>(false);
   const { attendantsList } = useAttendants();
+  const [modalConfirmIsOpen, setModalConfirmIsOpen] = useState<boolean>(false);
+  const [deleteAttendant, setDeleteAttendant] = useState<boolean>(false);
+  const [messageDeleteConfirm, setMessageDeleteConfirm] = useState("");
+  const [attendantCurrently, setAttendantCurrently] = useState<
+    IAttendants | undefined
+  >();
 
   const { mutate } = useSWRConfig();
 
@@ -49,6 +57,31 @@ const List: FC = () => {
         }
       })
       .finally(() => setLoading(false));
+  }
+
+  function ConfirmDeleteAttendant(e: any, attendant: IAttendants) {
+    e.stopPropagation();
+    setMessageDeleteConfirm(
+      `Tem certeza que deseja excluir ${attendant.name}?`
+    );
+    setModalConfirmIsOpen(true);
+  }
+
+  if (deleteAttendant) {
+    api
+      .delete(`/companies/attendants/${attendantCurrently?.id}`, {
+        headers: getHeaders(),
+      })
+      .then((res) => {
+        mutate("/companies/attendants/");
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setDeleteAttendant(false);
+        setAttendantCurrently(undefined);
+      });
   }
 
   return (
@@ -87,7 +120,7 @@ const List: FC = () => {
                   setPassword(e.target.value);
                 }}
               ></input>
-               {addAttendant && <Message color="red">{message}</Message>}
+              {addAttendant && <Message color="red">{message}</Message>}
               <button disabled={loading}>
                 {loading ? (
                   <ThreeDots color="#555" width={20} height={20} />
@@ -97,16 +130,33 @@ const List: FC = () => {
               </button>
             </FormAddSimple>
           )}
-         
         </>
         <ListContainer>
-          {attendantsList?.map((product: IAttendants, index: number) => (
+          {attendantsList?.map((attendant: IAttendants, index: number) => (
             <Attendant key={index}>
-              <p>{product.name}</p>
+              <div>
+                <p>Nome: {attendant.name}</p>
+                <p>Senha: {attendant.password}</p>
+              </div>
+
+              <div
+                onClick={(e) => {
+                  ConfirmDeleteAttendant(e, attendant);
+                  setAttendantCurrently(attendant);
+                }}
+              >
+                <DeleteOutlineIcon color={"action"} />
+              </div>
             </Attendant>
           ))}
         </ListContainer>
       </AttendantsContainer>
+      <Confirm
+        message={messageDeleteConfirm}
+        open={modalConfirmIsOpen}
+        close={() => setModalConfirmIsOpen(false)}
+        setConfirm={() => setDeleteAttendant(true)}
+      />
     </Container>
   );
 };

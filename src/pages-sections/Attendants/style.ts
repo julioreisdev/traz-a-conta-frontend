@@ -17,7 +17,7 @@ export const AttendantsContainer = styled.div`
 export const Attendant = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 100%;
   height: 50px;
   padding: 0.5rem;
@@ -31,9 +31,9 @@ export const Attendant = styled.div`
   }
 
   p {
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: bold;
     color: #fdfdfd;
-    text-transform: uppercase;
   }
 `;
+

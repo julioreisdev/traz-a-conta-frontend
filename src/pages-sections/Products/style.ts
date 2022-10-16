@@ -17,9 +17,9 @@ export const ProductsContainer = styled.div`
 export const Product = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 100%;
-  height: 50px;
+  min-height: 50px;
   padding: 0.5rem;
   margin: 0 0 1rem 0;
   background-color: #4682b4;
