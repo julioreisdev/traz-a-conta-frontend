@@ -6,20 +6,19 @@ export const Container = styled.div`
   align-items: center;
   width: 100%;
   min-height: calc(100vh - 80px);
-  background-color: #2499ef;
+  background-color: #fdfdfd;
 `;
 
 export const FormContainer = styled.div`
   background-color: #fdfdfd;
   padding: 1rem;
   width: 500px;
-  border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   h1 {
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: #4682B4;
     font-weight: 500;
     
@@ -35,7 +34,7 @@ export const FormContainer = styled.div`
         width: 100%;
         margin: 1rem 0 0 0;
         padding: 1rem;
-        border-radius: 10px;
+        border-radius: 5px;
         border: none;
         font-size: 1rem;
         border: 1px solid #ccc;
@@ -60,7 +59,7 @@ export const FormContainer = styled.div`
         width: 50%;
         margin-top: 1rem;
         padding: 0.75rem;
-        border-radius: 10px;
+        border-radius: 5px;
         font-size: 1rem;
         border: none;
         background-color: #4682B4;
