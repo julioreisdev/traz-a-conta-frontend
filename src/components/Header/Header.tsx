@@ -21,7 +21,7 @@ const Header: FC<IHeader> = ({ menuIsOpen, setMenuClose }) => {
     <Container>
       <HeaderContainer
         color={authRoutes ? "#4682B4" : "#fdfdfd"}
-        bgColor={authRoutes ? "#fdfdfd" : "#2499ef"}
+        bgColor={authRoutes ? "#fdfdfd" : "#4682b4"}
       >
         <Logo>
           <h2>TAC</h2>

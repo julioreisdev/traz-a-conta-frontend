@@ -42,9 +42,9 @@ export const MenuItemsContainer = styled.div<IMenuItemsContainer>`
   top: 8px;
   left: -200px;
   width: 200px;
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: #fdfdfd;
-  box-shadow: 0 0 5px #bbb;
+  box-shadow: 0 0 3px #ccc;
 `;
 
 export const ItemOption = styled.div`
