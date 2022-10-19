@@ -13,7 +13,7 @@ export const AddContainer = styled.div`
     justify-content: center;
     width: 100%;
     font-size: 1.1rem;
-    border-radius: 10px;
+    border-radius: 5px;
     color: #4682b4;
     font-weight: bold;
     padding: 0.5rem;
@@ -66,7 +66,7 @@ export const FormAddSimple = styled.form<IFormAddSimple>`
     padding: 0.75rem;
     font-weight: bold;
     font-size: 1rem;
-    border-radius: 10px;
+    border-radius: 5px;
     border: 1px solid #4682b4;
     color: #4682b4;
   }

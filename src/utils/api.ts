@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const api = axios.create({
   /* baseURL: `${process.env.REACT_APP_API}`, */
-  baseURL: "http://44.203.77.246",
+  baseURL: "http://54.146.154.2",
 });
 
 export function getHeaders() {

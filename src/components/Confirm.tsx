@@ -57,7 +57,7 @@ const Container = styled.div<IContainer>`
 `;
 
 const ConfirmContainer = styled.div`
-  width: 250px;
+  width: 280px;
   padding: 0.5rem;
   border-radius: 5px;
   background-color: #fdfdfd;

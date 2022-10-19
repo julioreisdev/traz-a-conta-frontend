@@ -25,6 +25,7 @@ const Login: FC = () => {
       .then((res) => {
         localStorage.setItem("tac_token", res.data.token);
         localStorage.setItem("tac_master", res.data.is_master);
+        localStorage.setItem("tac_name", res.data.company);
         navigate("/tables");
       })
       .catch((err) => {

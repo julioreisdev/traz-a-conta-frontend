@@ -136,7 +136,7 @@ const List: FC<IPropsTablesList> = ({ setBalanceId }) => {
     return (
       <TableContainerUnit>
         <Table
-          radius={optionsIsOpen ? "0" : "10px"}
+          radius={optionsIsOpen ? "0" : "5px"}
           onClick={(e) => {
             e.stopPropagation();
             setOptionsIsOpen(!optionsIsOpen);

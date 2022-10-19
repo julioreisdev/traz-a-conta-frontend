@@ -34,7 +34,7 @@ const List: FC = () => {
   function confirmDeleteProduct(e: any, attendant: IProduct) {
     e.stopPropagation();
     setMessageDeleteConfirm(
-      `Tem certeza que deseja (excluir ${attendant.name})?`
+      `Tem certeza que deseja excluir (${attendant.name})?`
     );
     setModalConfirmIsOpen(true);
   }

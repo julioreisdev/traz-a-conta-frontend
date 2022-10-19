@@ -49,7 +49,7 @@ export const MenuItemsContainer = styled.div<IMenuItemsContainer>`
 
 export const ItemOption = styled.div`
   padding: 0.5rem;
-  border-radius: 10px;
+  border-radius: 5px;
 
   :hover {
     background-color: #00000008;
@@ -69,3 +69,8 @@ export const ItemOption = styled.div`
 export const TitleItem = styled.h4`
   margin-left: 0.5rem;
 `;
+
+export const Company = styled.div`
+  display: flex;
+  align-items: center;
+`

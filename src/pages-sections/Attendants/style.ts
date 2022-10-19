@@ -23,7 +23,7 @@ export const Attendant = styled.div`
   padding: 0.5rem;
   margin: 0 0 1rem 0;
   background-color: #4682b4;
-  border-radius: 10px;
+  border-radius: 5px;
   transition: 0.1s all;
 
   :hover {
